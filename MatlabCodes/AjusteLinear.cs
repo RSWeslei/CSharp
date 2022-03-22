@@ -6,11 +6,11 @@ namespace MatlabCodes
     {
         static void Main(string[] args)
         {
-            // float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
-            // float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
+            float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
+            float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
 
-            float[] x = {1f, 2f, 3f, 4f};
-            float[] y = {1f, 2.5f, 3.5f, 4f};
+            // float[] x = {1f, 2f, 3f, 4f};
+            // float[] y = {1f, 2.5f, 3.5f, 4f};
            
             float somatorioX2 = 0;
             float somatorioX = 0;
@@ -104,6 +104,8 @@ namespace MatlabCodes
 
             Console.WriteLine("\nA1: " + a1);
             Console.WriteLine("A0: " + a0);
+
+            Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a1 + "x + " + a0);
         }
     }
 }
