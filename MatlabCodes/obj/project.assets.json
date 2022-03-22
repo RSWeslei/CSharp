@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wesle\\Documents\\Programming\\C#\\MatlabCodes\\MatlabCodes.csproj",
+      "projectUniqueName": "C:\\Users\\wesle\\Documents\\Programming\\CSharp\\MatlabCodes\\MatlabCodes.csproj",
       "projectName": "MatlabCodes",
-      "projectPath": "C:\\Users\\wesle\\Documents\\Programming\\C#\\MatlabCodes\\MatlabCodes.csproj",
+      "projectPath": "C:\\Users\\wesle\\Documents\\Programming\\CSharp\\MatlabCodes\\MatlabCodes.csproj",
       "packagesPath": "C:\\Users\\wesle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wesle\\Documents\\Programming\\C#\\MatlabCodes\\obj\\",
+      "outputPath": "C:\\Users\\wesle\\Documents\\Programming\\CSharp\\MatlabCodes\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wesle\\AppData\\Roaming\\NuGet\\NuGet.Config",
