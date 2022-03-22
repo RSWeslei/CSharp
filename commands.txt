@@ -1,0 +1,1 @@
+dotnet new console // cria um novo projeto
