@@ -1,4 +1,4 @@
-MatlabCodes/obj/
-MatlabCodes/bin/
+# MatlabCodes/obj/
+# MatlabCodes/bin/
 MatlabCodes.csproj
 .vscode/launch.json

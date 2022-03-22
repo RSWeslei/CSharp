@@ -1,0 +1,13 @@
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\bin\Debug\netcoreapp3.1\MatlabCodes.exe
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\bin\Debug\netcoreapp3.1\MatlabCodes.deps.json
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\bin\Debug\netcoreapp3.1\MatlabCodes.runtimeconfig.json
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\bin\Debug\netcoreapp3.1\MatlabCodes.runtimeconfig.dev.json
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\bin\Debug\netcoreapp3.1\MatlabCodes.dll
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\bin\Debug\netcoreapp3.1\MatlabCodes.pdb
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.csprojAssemblyReference.cache
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.AssemblyInfoInputs.cache
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.AssemblyInfo.cs
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.csproj.CoreCompileInputs.cache
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.dll
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.pdb
+C:\Users\wesle\Documents\Programming\C#\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.genruntimeconfig.cache
