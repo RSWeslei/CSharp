@@ -1,0 +1,2 @@
+dotnet new console // cria um novo projeto
+git rm -r --cached . // remove cache
