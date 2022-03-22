@@ -11,3 +11,6 @@ C:\Users\wesle\Documents\Programming\CSharp\MatlabCodes\obj\Debug\netcoreapp3.1\
 C:\Users\wesle\Documents\Programming\CSharp\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.dll
 C:\Users\wesle\Documents\Programming\CSharp\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.pdb
 C:\Users\wesle\Documents\Programming\CSharp\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.genruntimeconfig.cache
+C:\Users\wesle\Documents\Programming\CSharp\MatlabCodes\bin\Debug\netcoreapp3.1\Magick.NET.Core.dll
+C:\Users\wesle\Documents\Programming\CSharp\MatlabCodes\bin\Debug\netcoreapp3.1\Magick.NET.SystemWindowsMedia.dll
+C:\Users\wesle\Documents\Programming\CSharp\MatlabCodes\obj\Debug\netcoreapp3.1\MatlabCodes.csproj.CopyComplete

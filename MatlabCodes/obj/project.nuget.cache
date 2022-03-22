@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "6h1EO7DXWxdeiQQUe14tNA5UJk+AYsxxuOImWEKAs/4jN5TI1OYEpYe8ZbpobxSq5s38v1Mz2luFIKRFPI6KRA==",
+  "dgSpecHash": "0ezxP1BYx1+NeVWagpwcc0tmNMsoxCg+ZbrPxbPpiwa/Bs81FO0bRSnvSFXS1QalEDm9IUxOiNvgiZRSajdMXQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\wesle\\Documents\\Programming\\CSharp\\MatlabCodes\\MatlabCodes.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\wesle\\.nuget\\packages\\magick.net.core\\10.1.0\\magick.net.core.10.1.0.nupkg.sha512",
+    "C:\\Users\\wesle\\.nuget\\packages\\magick.net.systemwindowsmedia\\4.0.18\\magick.net.systemwindowsmedia.4.0.18.nupkg.sha512"
+  ],
   "logs": []
 }
