@@ -20,11 +20,11 @@ class AjusteLinear: Ajustes
     // float[] y = {2.1f, 3.2f, 4.4f, 5.8f};
 
 
-    float somatorioX = 0;
-    float somatorioX2 = 0;
-    float somatorioYX = 0;
-    float somatorioY = 0;
-    float somatorioY2 = 0;
+    float somatorioX;
+    float somatorioX2;
+    float somatorioYX;
+    float somatorioY;
+    float somatorioY2;
 
     float somatorioYYA2;
 
@@ -96,7 +96,7 @@ class AjusteLinear: Ajustes
         Console.WriteLine("A0: " + a0);
 
         //---------------------------------R2---------------------------------
-        float[] yAjustado = YAjustado(x, a0);
+        float[] yAjustado = YAjustadoLinear(x, a0);
         Console.WriteLine("\nY Ajustado");
         PrintMatriz1D(yAjustado);
 
@@ -127,8 +127,8 @@ class AjusteLinear: Ajustes
     {  
         AjusteLinear ajusteLinear = new AjusteLinear();
         AjusteQuadratico ajusteQuadratico = new AjusteQuadratico();
-        ajusteLinear.Ajuste(); 
-        // ajusteQuadratico.Ajuste();
+        // ajusteLinear.Ajuste(); 
+        ajusteQuadratico.Ajuste();
     }
 
 

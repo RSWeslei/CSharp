@@ -14,6 +14,8 @@ class AjusteQuadratico: Ajustes
     float somatorioXY;
 
     float somatorioY;
+    float somatorioY2;
+    float somatorioYYA2;
 
     float n;
 
@@ -22,6 +24,9 @@ class AjusteQuadratico: Ajustes
     float[,] sistema;
 
     float[] resultado;
+
+    float[] yAjustado;
+    float r2;
 
     public void Ajuste()
     {
@@ -36,6 +41,7 @@ class AjusteQuadratico: Ajustes
         somatorioXY = SomatorioXY(x, y);
 
         somatorioY = SomatorioNaPotencia(y);
+        somatorioY2 = SomatorioNaPotencia(y, 2);
 
         matrizA = CriarMatrizA();
         matrizB = CriarMatrizB();
@@ -73,6 +79,15 @@ class AjusteQuadratico: Ajustes
 
         Console.WriteLine("\nResultado: ");
         PrintMatriz1D(resultado);
+
+        yAjustado = YAjustadoQuadratico(x, resultado[0], resultado[1], resultado[2]);
+        Console.WriteLine("\nY Ajustado: ");
+        PrintMatriz1D(yAjustado);
+
+        
+        somatorioYYA2 = SomatorioYMenosYAjustadoNaPotencia(y, yAjustado, 2);
+        r2 = R2(somatorioYYA2, somatorioY2, somatorioY, n);
+        Console.WriteLine("\nR2: " + r2);
 
         Console.WriteLine("\nY = " + resultado[0] + "x² + " + resultado[1] + "x + " + resultado[2]);
     }

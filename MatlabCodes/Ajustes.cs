@@ -42,12 +42,22 @@ public class Ajustes
         return somatorio;
     }
 
-    public float[] YAjustado(float[] x, float a0)
+    public float[] YAjustadoLinear(float[] x, float a0)
     {
         float[] y = new float[x.Length];
         for (int i = 0; i < x.Length; i++)
         {
             y[i] = x[i] + a0;
+        }
+        return y;
+    }
+
+    public float[] YAjustadoQuadratico(float[] x, float a2, float a1, float a0)
+    {
+        float[] y = new float[x.Length];
+        for (int i = 0; i < x.Length; i++)
+        {
+            y[i] = a2 * (float)Math.Pow(x[i], 2) + (a1 * x[i]) + a0;
         }
         return y;
     }
@@ -67,8 +77,6 @@ public class Ajustes
     {
         float passo1 = n * somatorioYYA2;
         float passo2 = (n * somatorioY2) - ((float)Math.Pow(somatorioY, 2));
-        Console.WriteLine("Passo 1: " + passo1);
-        Console.WriteLine("Passo 2: " + passo2);
         return 1 - passo1 / passo2;
     }   
 
