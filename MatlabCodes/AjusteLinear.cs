@@ -69,41 +69,21 @@ class AjusteLinear: Ajustes
         Console.WriteLine("N: " + n);
         
         Console.WriteLine("\nMatriz A");
-        for(int i = 0; i < 2; i++)
-        {
-            for(int j = 0; j < 2; j++)
-            {
-                Console.Write(matrizA[i, j] + " ");
-            }
-            Console.WriteLine();
-        }
+        PrintMatriz2D(matrizA);
 
         Console.WriteLine("\nMatriz A Inversa");
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                Console.Write(matrizAInversa[i, j] + " ");
-            }
-            Console.WriteLine();
-        }
+        PrintMatriz2D(matrizAInversa);
 
         Console.WriteLine("\nMatriz B");
-        for (int i = 0; i < 2; i++)
-        {
-            Console.Write(matrizB[i] + "\n");
-        }
+        PrintMatriz1D(matrizB);
 
         Console.WriteLine("\nResultado");
-        for (int i = 0; i < 2; i++)
-        {
-            Console.Write(resultado[i] + "\n");
-        }
+        PrintMatriz1D(resultado);
 
         Console.WriteLine("\nA1: " + a1);
         Console.WriteLine("A0: " + a0);
 
-        Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a1 + "x + " + a0);
+        Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a1 + "x + " + a0 + "\n\n");
     }
 
     static void Main(string[] args)
@@ -113,5 +93,7 @@ class AjusteLinear: Ajustes
         ajusteLinear.Ajuste(); 
         ajusteQuadratico.Ajuste();
     }
+
+
 }
 

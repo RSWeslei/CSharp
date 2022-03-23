@@ -40,5 +40,27 @@ public class Ajustes
         }
         return somatorio;
     }
+
+    public void PrintMatriz2D(float[,] matriz)
+    {
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                Console.Write(matriz[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    public void PrintMatriz1D(float[] matriz)
+    {
+        for (int i = 0; i < matriz.Length; i++)
+        {
+            Console.Write(matriz[i] + " ");
+        }
+        Console.WriteLine();
+    }
+
 }
     
