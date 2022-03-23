@@ -1,4 +1,5 @@
 using System;
+using Fractions;
 
 public class Ajustes
 {
@@ -40,6 +41,36 @@ public class Ajustes
         }
         return somatorio;
     }
+
+    public float[] YAjustado(float[] x, float a0)
+    {
+        float[] y = new float[x.Length];
+        for (int i = 0; i < x.Length; i++)
+        {
+            y[i] = x[i] + a0;
+        }
+        return y;
+    }
+
+    public float SomatorioYMenosYAjustadoNaPotencia(float[] y, float[] yAjustado, float potencia = 1)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < y.Length; i++)
+        {
+            somatorio += (float)Math.Pow(y[i] - yAjustado[i], potencia);
+        }
+        return somatorio;
+        
+    }
+
+    public float R2(float somatorioYYA2, float somatorioY2, float somatorioY, float n)
+    {
+        float passo1 = n * somatorioYYA2;
+        float passo2 = (n * somatorioY2) - ((float)Math.Pow(somatorioY, 2));
+        Console.WriteLine("Passo 1: " + passo1);
+        Console.WriteLine("Passo 2: " + passo2);
+        return 1 - passo1 / passo2;
+    }   
 
     public void PrintMatriz2D(float[,] matriz)
     {
