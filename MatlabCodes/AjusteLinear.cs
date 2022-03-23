@@ -48,21 +48,7 @@ class AjusteLinear: Ajustes
         somatorioY2 = SomatorioNaPotencia(y, 2);
         somatorioYX = SomatorioXY(y, x);
 
-
-        matrizA = new float[,]{
-            {somatorioX2, somatorioX},
-            {somatorioX, n}
-        };
-
-        matrizAInversa = new float[,]{
-            {n, -somatorioX},
-            {-somatorioX, somatorioX2}
-        };
-
-        matrizB = new float[]{
-            somatorioYX,
-            somatorioY
-        };
+        CriarMatrizes();
 
         determinanteA = Determinante(somatorioX, somatorioX2, n);
 
@@ -108,6 +94,24 @@ class AjusteLinear: Ajustes
 
 
         Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a1 + "x + " + a0 + "\n\n");
+    }
+
+    private void CriarMatrizes()
+    {
+        matrizA = new float[,]{
+            {somatorioX2, somatorioX},
+            {somatorioX, n}
+        };
+
+        matrizAInversa = new float[,]{
+            {n, -somatorioX},
+            {-somatorioX, somatorioX2}
+        };
+
+        matrizB = new float[]{
+            somatorioYX,
+            somatorioY
+        };
     }
 
     private float[] Resultado()
