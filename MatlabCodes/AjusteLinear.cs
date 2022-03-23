@@ -18,6 +18,7 @@ class AjusteLinear: Ajustes
     float[,] matrizAInversa;
     float[] matrizB;
     float determinanteA;
+    float[] resultado;
 
     float a1, a0;
 
@@ -48,14 +49,7 @@ class AjusteLinear: Ajustes
 
         determinanteA = Determinante(somatorioX, somatorioX2, n);
 
-        float[] resultado = new float[2];
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                resultado[i] += matrizAInversa[i, j] * matrizB[j];
-            }
-        }
+        resultado = Resultado();
 
         a1 = resultado[0] * determinanteA;
         a0 = resultado[1] * determinanteA;
@@ -84,6 +78,19 @@ class AjusteLinear: Ajustes
         Console.WriteLine("A0: " + a0);
 
         Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a1 + "x + " + a0 + "\n\n");
+    }
+
+    private float[] Resultado()
+    {
+        float[] resultado = new float[2];
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                resultado[i] += matrizAInversa[i, j] * matrizB[j];
+            }
+        }
+        return resultado;
     }
 
     static void Main(string[] args)
