@@ -2,42 +2,34 @@
 
 class AjusteLinear: Ajustes
 {
-    static void Main(string[] args)
-    {
-        Ajustes ajuste = new Ajustes();
+    float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
+    float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
 
-        float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
-        float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
+    // float[] x = {1f, 2f, 3f, 4f};
+    // float[] y = {1f, 2.5f, 3.5f, 4f};
+    
+    float somatorioX = 0;
+    float somatorioX2 = 0;
+    float somatorioYX = 0;
+    float somatorioY = 0;
 
-        // float[] x = {1f, 2f, 3f, 4f};
-        // float[] y = {1f, 2.5f, 3.5f, 4f};
-        
-        float somatorioX = 0;
-        float somatorioX2 = 0;
-        float somatorioYX = 0;
-        float somatorioY = 0;
+    float n;
+    float[,] matrizA;
+    float[,] matrizAInversa;
+    float[] matrizB;
+    float determinanteA;
 
-        float n = x.Length;
-        float[,] matrizA;
-        float[,] matrizAInversa;
-        float[] matrizB;
-        float determinanteA;
+    float a1, a0;
 
-        float a1, a0;
+    public void Ajuste()
+    { 
+        n = x.Length;
 
-        // for (int i = 0; i < x.Length; i++)
-        // {
-        //     // somatorioX2 += (float)Math.Pow(x[i], 2);
-        //     // somatorioX += x[i];
-        //     // somatorioY += y[i];
-        //     // somatorioYX += x[i] * y[i];
-        // }
+        somatorioX = SomatorioNaPotencia(x);
+        somatorioX2 = SomatorioNaPotencia(x, 2);
 
-        somatorioX = ajuste.SomatorioNaPotencia(x);
-        somatorioX2 = ajuste.SomatorioNaPotencia(x, 2);
-        somatorioY = ajuste.SomatorioNaPotencia(y);
-
-        somatorioYX = ajuste.SomatorioXY(y, x);
+        somatorioY = SomatorioNaPotencia(y);
+        somatorioYX = SomatorioXY(y, x);
 
         matrizA = new float[,]{
             {somatorioX2, somatorioX},
@@ -54,8 +46,7 @@ class AjusteLinear: Ajustes
             somatorioY
         };
 
-        // determinanteA = 1 / ((somatorioX2 * n) - (somatorioX * somatorioX));
-        determinanteA = ajuste.Determinante(somatorioX, somatorioX2, n);
+        determinanteA = Determinante(somatorioX, somatorioX2, n);
 
         float[] resultado = new float[2];
         for (int i = 0; i < 2; i++)
@@ -113,6 +104,14 @@ class AjusteLinear: Ajustes
         Console.WriteLine("A0: " + a0);
 
         Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a1 + "x + " + a0);
+    }
+
+    static void Main(string[] args)
+    {  
+        AjusteLinear ajusteLinear = new AjusteLinear();
+        AjusteQuadratico ajusteQuadratico = new AjusteQuadratico();
+        ajusteLinear.Ajuste(); 
+        ajusteQuadratico.Ajuste();
     }
 }
 

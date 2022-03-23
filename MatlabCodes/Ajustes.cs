@@ -1,7 +1,9 @@
 using System;
 
-class Ajustes
+public class Ajustes
 {
+    public string name;
+
     public float SomatorioNaPotencia(float[] array, int potencia = 1)
     {
         float somatorio = 0;
@@ -12,12 +14,12 @@ class Ajustes
         return somatorio;
     }
 
-    public float SomatorioXY(float[] arrayA, float[] arrayB)
+    public float SomatorioXY(float[] x, float[] y)
     {
         float somatorio = 0;
-        for (int i = 0; i < arrayA.Length; i++)
+        for (int i = 0; i < x.Length; i++)
         {
-            somatorio += arrayA[i] * arrayB[i];
+            somatorio += x[i] * y[i];
         }
         return somatorio;
     }
@@ -27,6 +29,16 @@ class Ajustes
         float determinante = 0;
         determinante = 1 / ((sX2 * n) - (sX * sX));
         return determinante;
+    }
+
+    public float SomatorioXYNaPotenciaX(float[] x, float[] y, int potencia = 1)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < x.Length; i++)
+        {
+            somatorio += (float)Math.Pow(x[i], potencia) * y[i];
+        }
+        return somatorio;
     }
 }
     
