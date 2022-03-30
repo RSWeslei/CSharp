@@ -2,4 +2,9 @@ MatlabCodes.csproj
 MatlabCodes/bin
 MatlabCodes/obj
 MatlabCodes/.vscode
+ShellSort.csproj
+ShellSort/bin
+ShellSort/obj
+ShellSort/.vscode
+
 .vscode

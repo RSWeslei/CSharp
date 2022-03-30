@@ -21,6 +21,7 @@ public class Ajustes
         for (int i = 0; i < x.Length; i++)
         {
             somatorio += x[i] * y[i];
+            Console.WriteLine("SmX * Y: " + x[i] + " * " + y[i]);
         }
         return somatorio;
     }
@@ -28,7 +29,9 @@ public class Ajustes
     public float Determinante(float sX, float sX2, float n)
     {
         float determinante = 0;
-        determinante = 1 / ((sX2 * n) - (sX * sX));
+        determinante = ((sX2 * n) - (sX * sX));
+        Console.WriteLine("1/"+determinante);
+        determinante = 1 / determinante;
         return determinante;
     }
 
@@ -47,7 +50,7 @@ public class Ajustes
         float[] y = new float[x.Length];
         for (int i = 0; i < x.Length; i++)
         {
-            y[i] = x[i] + a0;
+            y[i] =  1 * x[i] + a0;
         }
         return y;
     }
@@ -65,20 +68,32 @@ public class Ajustes
     public float SomatorioYMenosYAjustadoNaPotencia(float[] y, float[] yAjustado, float potencia = 1)
     {
         float somatorio = 0;
+        float temp = 0;
         for (int i = 0; i < y.Length; i++)
         {
-            somatorio += (float)Math.Pow(y[i] - yAjustado[i], potencia);
+            temp = (y[i] - yAjustado[i]);
+            somatorio += (float)Math.Pow(temp, potencia);
+            Console.WriteLine("Y - Y Ajustado: " + (float)Math.Pow(temp, potencia));
         }
         return somatorio;
         
     }
 
-    public float R2(float somatorioYYA2, float somatorioY2, float somatorioY, float n)
+    public float R2Quadratico(float somatorioYYA2, float somatorioY2, float somatorioY, float n)
     {
         float passo1 = n * somatorioYYA2;
         float passo2 = (n * somatorioY2) - ((float)Math.Pow(somatorioY, 2));
         return 1 - passo1 / passo2;
     }   
+
+    public float R2Linear(float somatorioYYA2, float somatorioY2, float somatorioY, float n)
+    {
+        float passo1 = n * somatorioYYA2;
+        float passo2 = (n * somatorioY2) - ((float)Math.Pow(somatorioY, 2));
+        Console.WriteLine("Passo 1: " + passo1);
+        Console.WriteLine("Passo 2: " + passo2);
+        return 1 - passo1 / passo2;
+    }
 
     public void PrintMatriz2D(float[,] matriz)
     {

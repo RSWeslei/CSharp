@@ -2,8 +2,11 @@ using System;
 
 class AjusteQuadratico: Ajustes
 {
-    float[] x = {-2f, -1f, 0f, 1f, 2f, 3f};
-    float[] y = {-0.1f, 0.5f, 0.8f, 0.9f, 0.8f, 0.4f};
+    // float[] x = {-2f, -1f, 0f, 1f, 2f, 3f};
+    // float[] y = {-0.1f, 0.5f, 0.8f, 0.9f, 0.8f, 0.4f};
+
+    float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
+    float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
 
     float somatorioX4;
     float somatorioX3;
@@ -86,7 +89,7 @@ class AjusteQuadratico: Ajustes
 
         
         somatorioYYA2 = SomatorioYMenosYAjustadoNaPotencia(y, yAjustado, 2);
-        r2 = R2(somatorioYYA2, somatorioY2, somatorioY, n);
+        r2 = R2Quadratico(somatorioYYA2, somatorioY2, somatorioY, n);
         Console.WriteLine("\nR2: " + r2);
 
         Console.WriteLine("\nY = " + resultado[0] + "x² + " + resultado[1] + "x + " + resultado[2]);

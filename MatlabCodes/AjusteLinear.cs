@@ -2,11 +2,11 @@
 
 class AjusteLinear: Ajustes
 {
-    // float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
-    // float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
+//     float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
+//     float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
 
-    float[] x = {1f, 2f, 3f, 4f};
-    float[] y = {1f, 2.5f, 3.5f, 4f};
+    // float[] x = {1f, 2f, 3f, 4f};
+    // float[] y = {1f, 2.5f, 3.5f, 4f};
 
     // 5E
     // float[] x = {1, 3, 5, 10, 15, 25};
@@ -16,8 +16,8 @@ class AjusteLinear: Ajustes
     // float[] y = {2f, 2.04f, 2.25f, 2.33f,  2.56f, 2.83f};
 
     // 7
-    // float[] x = {1.5f, 2.0f, 2.5f, 3.0f};
-    // float[] y = {2.1f, 3.2f, 4.4f, 5.8f};
+    float[] x = {1.5f, 2.0f, 2.5f, 3.0f};
+    float[] y = {2.1f, 3.2f, 4.4f, 5.8f};
 
 
     float somatorioX;
@@ -89,7 +89,7 @@ class AjusteLinear: Ajustes
         somatorioYYA2 = SomatorioYMenosYAjustadoNaPotencia(y, yAjustado, 2);
         Console.WriteLine("\nSomatorio Y - Y Ajustado²: " + somatorioYYA2);
 
-        float r2 = R2(somatorioYYA2, somatorioY2, somatorioY, n);
+        float r2 = R2Linear(somatorioYYA2, somatorioY2, somatorioY, n);
         Console.WriteLine("\nR2: " + r2);
 
 
@@ -131,8 +131,8 @@ class AjusteLinear: Ajustes
     {  
         AjusteLinear ajusteLinear = new AjusteLinear();
         AjusteQuadratico ajusteQuadratico = new AjusteQuadratico();
-        // ajusteLinear.Ajuste(); 
-        ajusteQuadratico.Ajuste();
+        ajusteLinear.Ajuste(); 
+        // ajusteQuadratico.Ajuste();
     }
 
 
