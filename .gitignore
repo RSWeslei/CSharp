@@ -2,9 +2,15 @@ MatlabCodes.csproj
 MatlabCodes/bin
 MatlabCodes/obj
 MatlabCodes/.vscode
+
 ShellSort.csproj
 ShellSort/bin
 ShellSort/obj
 ShellSort/.vscode
+
+Estatistica.csproj
+Estatistica/bin
+Estatistica/obj
+Estatistica/.vscode
 
 .vscode
