@@ -87,7 +87,9 @@ namespace Estatistica
             float pos = (index * n) / s;
 
             float mediana = (1 * n) / 2;
-            
+
+            float limiteInferior = array1[(int)pos-1];
+
         }
         
         #region methods
