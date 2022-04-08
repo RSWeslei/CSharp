@@ -46,6 +46,26 @@ public class Ajustes
         return somatorio;
     }
 
+    public float SomatorioXeElevadoAYDivX(float[] x, float[] y)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < x.Length; i++)
+        {
+            somatorio += x[i] * ((float)Math.Pow(1.5E-8f, y[i] / x[i]));
+        }
+        return somatorio;
+    }
+
+    public float SomatorioeElevadoYDivX(float[] x, float[] y)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < x.Length; i++)
+        {
+            somatorio += (float)Math.Pow(1.5E-8f, y[i] / x[i]);
+        }
+        return somatorio;
+    }
+
     public float[] YAjustadoLinear(float[] x, float a0)
     {
         float[] y = new float[x.Length];
@@ -73,10 +93,28 @@ public class Ajustes
         for (int i = 0; i < y.Length; i++)
         {
             somatorio += (float)Math.Pow((y[i] - yAjustado[i]), potencia);
-            // Console.WriteLine("Somatorio Y - Y Ajustado²: " + somatorio);
+        }
+        return somatorio;   
+    }
+
+    public float SomatorioXMenosXxYNaPotencia(float[] x, float[] y, float potencia = 1)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < x.Length; i++)
+        {
+            somatorio += (float)Math.Pow((x[i] - x[i] * y[i]), potencia);
         }
         return somatorio;
-        
+    }
+
+    public float SomatorioXMenosXxY(float[] x, float[] y)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < x.Length; i++)
+        {
+            somatorio += (x[i] - x[i] * y[i]);
+        }
+        return somatorio;
     }
 
     public float SomatorioY1DividindoX(float[] y, float[] x)
@@ -172,6 +210,16 @@ public class Ajustes
         for (int i = 0; i < y.Length; i++)
         {
             somatorio += (float)Math.Log(y[i]);
+        }
+        return somatorio;
+    }
+
+    public float SomatorioLogYNaPotencia(float[] xy, float potencia)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < xy.Length; i++)
+        {
+            somatorio += (float)Math.Pow(Math.Log(xy[i]), potencia);
         }
         return somatorio;
     }
