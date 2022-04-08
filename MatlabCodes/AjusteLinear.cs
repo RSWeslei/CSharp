@@ -23,8 +23,8 @@ class AjusteLinear: Ajustes
     // float[] y = {2.1f, 3.2f, 4.4f, 5.8f};
 
     // 8
-    float[] x = {1.0f, 1.5f, 2.0f, 2.5f, 3.0f};
-    float[] y = {1.1f, 2.1f, 3.2f, 4.4f, 5.8f};
+    // float[] x = {1.0f, 1.5f, 2.0f, 2.5f, 3.0f};
+    // float[] y = {1.1f, 2.1f, 3.2f, 4.4f, 5.8f};
 
     // 9
     // float[] x = {0f, 1f, 2f, 3f};
@@ -37,6 +37,10 @@ class AjusteLinear: Ajustes
     // 13
     // float[] x = {0f, 1f, 2f, 3f, 4f, 5f, 6f};
     // float[] y = {32f, 47f, 65f, 92f, 132f, 190f, 275};
+
+    // 16
+    float[] x = {0.0f, 0.5f, 0.1f, 2.5f, 0.3f};
+    float[] y = {2.0f, 2.6f, 3.7f, 13.2f, 21f};
 
     // 25
     // float[] x = {13, 15, 16, 21, 23, 25, 29, 30, 31, 36, 40, 42, 55, 60, 62, 64, 70, 72, 100, 130};
@@ -544,6 +548,61 @@ class AjusteLinear: Ajustes
         ExportArrays(x, y, xa, ya);
     }
     
+    public void Ajuste16()
+    {
+        float som1 = SomatorioNaPotencia(x, 2); // PADRAO
+        float som2 = SomatorioNaPotencia(x);; // PADRAO
+        n = x.Length; // PADRAO
+ 
+        // Cria a matriz A
+        CriarMatrizA(som1, som2, n); // PADRAO
+
+        MatrizInversa(); // PADRAO
+        // Moostra as matrizes
+        MostrarMatrizes(); // PADRAO
+
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx
+        for (int i = 0; i < x.Length; i++){
+            B[i] = y[i];  
+        }
+        Console.WriteLine("\nB"); // PADRAO
+        PrintMatriz1D(B); // PADRAO
+
+        //////////////////A1&A0////////////////////
+        // Calcula a1 e a0
+        A1A0(B, matrizAInversa); // PADRAO
+
+        a0 = (float)Math.Log(a0);
+
+        Console.WriteLine("A1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  1 + a0 * (float)Math.Pow(Math.E, a1 * x[i]);
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = 1 + a0 * (float)Math.Pow(Math.E, a1 * xa[i]);
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        // Calcula o R2
+        R2(yAjustado);
+        // Exporta os arrays
+        ExportArrays(x, y, xa, ya);
+    }
+
     #region Metodos
 
     public void MostrarMatrizes()
@@ -742,7 +801,7 @@ class AjusteLinear: Ajustes
     {  
         AjusteLinear ajusteLinear = new AjusteLinear();
         AjusteQuadratico ajusteQuadratico = new AjusteQuadratico();
-        ajusteLinear.Ajuste8(); 
+        ajusteLinear.Ajuste16(); 
         // ajusteQuadratico.Ajuste();
     }
 
