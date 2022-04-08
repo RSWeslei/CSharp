@@ -79,6 +79,26 @@ public class Ajustes
         
     }
 
+    public float SomatorioY1DividindoX(float[] y, float[] x)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < y.Length; i++)
+        {
+            somatorio += y[i] * (1 / x[i]);
+        }
+        return somatorio;
+    }
+
+    public float Somatorio1DividindoX(float[] x)
+    {
+        float somatorio = 0;
+        for (int i = 0; i < x.Length; i++)
+        {
+            somatorio += (1 / x[i]);
+        }
+        return somatorio;
+    }
+
     public float R2Quadratico(float somatorioYYA2, float somatorioY2, float somatorioY, float n)
     {
         float passo1 = n * somatorioYYA2;
