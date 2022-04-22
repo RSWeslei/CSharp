@@ -27,6 +27,21 @@ namespace Estatistica
             return media / somaPesos;
         }
 
+        public float Mediana(float[] array)
+        {
+            if (!IsSorted(array)){
+                Array.Sort(array);
+            }
+            if (array.Length % 2 == 0)
+            {
+                return (array[array.Length / 2] + array[array.Length / 2 - 1]) / 2;
+            }
+            else
+            {
+                return array[array.Length / 2];
+            }
+        }
+
         public void Separatriz(SeparatrizType separatriz, float index, float[] array)
         {
             float n = array.Length;
@@ -80,16 +95,44 @@ namespace Estatistica
             }
         }
 
-        public void SeparatrizIntervalar(SeparatrizType separatriz, int index, float[] array1, float[] array2)
+        public float SeparatrizIntervalar(SeparatrizType separatriz, int index, float[] array1, float[] array2, float[] frequencia, bool debug = false)
         {
             int n = array1.Length;
             int s = SeparatrizValue(separatriz);
-            float pos = (index * n) / s;
 
-            float mediana = (1 * n) / 2;
+            float[] cumulativo = new float[n];
+            cumulativo[0] = frequencia[0];
+            for (int i = 1; i < n; i++){
+                cumulativo[i] = cumulativo[i - 1] + frequencia[i];
+            }
 
-            float limiteInferior = array1[(int)pos-1];
+            float fa = cumulativo[cumulativo.Length-1] * (index / 100f);
+            float limiteInferior=0f;
+            float limiteSuperior=0f;
 
+            int fpos = 0;
+            for (int i = 0; i < n; i++){
+                if (cumulativo[i] >= fa){
+                    limiteInferior = array1[i];
+                    limiteSuperior = array2[i];
+                    fpos = i;
+                    break;
+                }
+            }
+
+            float res = limiteInferior + ((fa - cumulativo[fpos-1]) / frequencia[fpos]) * (limiteSuperior - limiteInferior);
+
+            if (debug){
+                Console.Write("\nFrequencia cumulativa: ");
+                for (int i = 0; i < n; i++){
+                    Console.Write(cumulativo[i] + " ");
+                }
+                Console.WriteLine("\nFrequencia acumulada: " + fa);
+                Console.WriteLine("Limite inferior: " + limiteInferior);
+                Console.WriteLine("Limite superior: " + limiteSuperior + "\n");
+            }
+
+            return res;
         }
         
         #region methods
@@ -105,7 +148,7 @@ namespace Estatistica
             return 0;
         }
 
-        public static bool IsSorted(float[] arr)
+        private static bool IsSorted(float[] arr)
         {
             for (int i = 1; i < arr.Length; i++)
             {
@@ -116,6 +159,31 @@ namespace Estatistica
             }
             return true;
         }
+
+        public void ClasseIntervalar(float[] array1, float[] array2, float[] frequencia)
+        {
+            int n = array1.Length;
+            float[] xi = new float[n];
+            float[] xf = new float[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                xi[i] = array1[i] + ((array2[i] - array1[i]) / 2);
+                xf[i] = xi[i] * frequencia[i];
+                
+            }
+
+            Console.WriteLine("\nXi: ");
+            for (int i = 0; i < n; i++){
+                Console.Write(xi[i] + " ");
+            }
+            Console.WriteLine("\nXf: ");
+            for (int i = 0; i < n; i++){
+                Console.Write(xf[i] + " ");
+            }
+
+        }
+
         #endregion
     
     }

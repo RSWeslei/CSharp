@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Media;
 
 class AjusteLinear: Ajustes
 {
-//     float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
-//     float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
+    // float[] x = {1, 2, 3, 4, 5, 6, 7, 8};
+    // float[] y = {0.5f, 0.6f, 0.9f, 0.8f, 1.2f, 1.5f, 1.7f, 2.0f};
 
     // float[] x = {1f, 2f, 3f, 4f};
     // float[] y = {1f, 2.5f, 3.5f, 4f};
@@ -14,9 +13,6 @@ class AjusteLinear: Ajustes
     // 5 e 6
     // float[] x = {1, 3, 5, 10, 15, 25};
     // float[] y = {0.04049f, 0.02604f, 0.01912f, 0.01142f, 0.00741f, 0.00521f}; 
-
-    // float[] x = {0f, 0.2f, 0.4f, 0.6f, 0.8f, 1f};
-    // float[] y = {2f, 2.04f, 2.25f, 2.33f,  2.56f, 2.83f};
 
     // 7
     // float[] x = {1.5f, 2.0f, 2.5f, 3.0f};
@@ -38,638 +34,680 @@ class AjusteLinear: Ajustes
     // float[] x = {0f, 1f, 2f, 3f, 4f, 5f, 6f};
     // float[] y = {32f, 47f, 65f, 92f, 132f, 190f, 275};
 
+    // 14
+    // float[] x = {0f, 2f, 4f, 6f, 8f, 10f, 12f};
+    // float[] y = {1f, 0.79f, 0.63f, 0.5f, 0.4f, 0.32f, 0.25f};
+
     // 16
-    float[] x = {0.0f, 0.5f, 0.1f, 2.5f, 0.3f};
-    float[] y = {2.0f, 2.6f, 3.7f, 13.2f, 21f};
+    // float[] x = {0.0f, 0.5f, 1f, 2.5f, 3f};
+    // float[] y = {2.0f, 2.6f, 3.7f, 13.2f, 21f};
+
+    // 17
+    // float[] x = {0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f};
+    // float[] y = {5.02f, 5.21f, 6.49f, 9.54f, 16.02f, 24.53f};
+
+    // 22
+    // float[] x = {0.1f, 0.3f, 0.5f, 0.5f, 0.7f, 0.8f, 0.8f, 1.10f, 1.30f, 1.80f};
+    // float[] y = {0.833f, 0.625f, 0.500f, 0.510f, 0.416f, 0.384f, 0.395f, 0.312f, 0.277f, 0.217f};
+
+    // 24
+    // float[] x = {1.0f, 1.2f, 1.4f, 1.6f, 1.8f, 2.0f, 2.2f, 2.4f, 2.6f, 2.8f, 3.0f};
+    // float[] y = {0.525f, 0.8448f, 1.2807f, 1.8634f, 2.6326f, 3.6386f, 4.944f, 6.6258f, 8.7768f, 11.5076f, 14.9484f};
 
     // 25
     // float[] x = {13, 15, 16, 21, 23, 25, 29, 30, 31, 36, 40, 42, 55, 60, 62, 64, 70, 72, 100, 130};
     // float[] y = {11, 10, 11, 12, 13, 13, 12, 14, 16, 17, 13, 14, 22, 14, 21, 21, 24, 17, 23, 34};
 
-
-    float somatorioX;
-    float somatorioX2;
-    // float somatorioYX;
-    float somatorioY;
-    float somatorioY2;
-
-    float somatorioYYA2;
+    // 28
+    float[] x = {0.1f, 0.2f, 0.4f, 0.6f, 0.9f, 1.3f, 1.5f, 1.7f, 1.8f};
+    float[] y = {0.75f, 1.25f, 1.45f, 1.25f, 0.85f, 0.55f, 0.35f, 0.28f, 0.18f};
 
     float n;
-    float[,] matrizA;
-    float[,] matrizAInversa;
-    // float[] matrizB;
-    // float determinanteA;
-
     float a1, a0;
 
-    // Funciona
+    // Funciona 2.0
     public void Ajuste5()
     {
-        float somatorioXLogYNaPotencia = SomatorioXLogYNaPotencia(x, y, 2);
-        float somatorioLogY = SomatorioLogY(y);
+        n = x.Length; // PADRAO
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
 
-        somatorioX2 = SomatorioNaPotencia(x, 2);
-        somatorioX = SomatorioNaPotencia(x);
-        n = x.Length;
-
-        Console.WriteLine("Somatorio de x²: " + somatorioX2);
-        Console.WriteLine("Somatorio de x: " + somatorioX);
-        Console.WriteLine("Somatorio de x*log(y): " + somatorioXLogYNaPotencia);
-        Console.WriteLine("Somatorio de log(y): " + somatorioLogY);
-
-        CriarMatrizA(somatorioX2, somatorioX, n);
-        // CriarMatrizB(somatorioXLogYNaPotencia, somatorioLogY);
-
-        MatrizInversa();
-
-        MostrarMatrizes();
-
-        float[] B = new float[x.Length];
-
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = (float)Math.Log(y[i]);
+            B[i] = (float)Math.Log(y[i]); // MUTAVEL
         }
-        Console.WriteLine("\nB");
-        PrintMatriz1D(B);
 
-        A1A0(B, matrizAInversa);
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
 
+        // Se ln de a1 ou a0, usa-se exp
+        
         a1 = -Math.Abs(a1);
         a0 = (float)Math.Exp(a0);
 
-        Console.WriteLine("\nA1: " + a1);
-        Console.WriteLine("A0: " + a0);
-        
         // fx = exp(a0)^-a1
         Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a0 + "^" + a1 + "t");
 
-        float[] xa = XA(x, n);
-        float[] yAjustado = new float[x.Length];
-        float[] ya = new float[xa.Length];
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
 
-        // yAjustado == Ya
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
         for (int i = 0; i < n; i++){
             yAjustado[i] = a0 * (float)(Math.Exp(a1*x[i]));
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
+        // ya, usa a função da questão NAO linearizada * xa
         for (int i = 0; i < xa.Length; i++){
             ya[i] = a0 * (float)(Math.Exp(a1 * xa[i]));
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
-
-        R2(yAjustado);
-
-        ExportArrays(x, y, xa, ya);
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
 
-    // Funciona
+    // Funciona 2.0
     public void Ajuste6()
     {
-        somatorioX2 = SomatorioNaPotencia(x, 2);
-        somatorioX = SomatorioNaPotencia(x);
-        n = x.Length;
+        n = x.Length; // PADRAO
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
 
-        float somatorioY1X = SomatorioY1DividindoX(y, x);
-        float somatorio1X = Somatorio1DividindoX(x);
-
-        // Cria a matriz A
-        CriarMatrizA(somatorioX2, somatorioX, n);
-        // Cria matriz A inversa
-        MatrizInversa();
-        // Moostra as matrizes
-        MostrarMatrizes();
-
-        float[] B = new float[x.Length];
-
-        // calcula a matriz B
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = 1/y[i];
+            B[i] = 1/y[i]; // MUTAVEL
         }
-        Console.WriteLine("\nB");
-        PrintMatriz1D(B);
-
-        // Calcula a1 e a0
-        A1A0(B, matrizAInversa);
 
         //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
 
-        a0 = 1/a0;
+        // Se ln de a1 ou a0, usa-se exp
+        a0 = 1/a0; // MUTAVEL
 
-        Console.WriteLine("A1: " + a1);
-        Console.WriteLine("A0: " + a0);
+        // fx = exp(a0)^-a1
+        Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a0 + "^" + a1 + "t");
 
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
         //////////////////A1&A0////////////////////
 
-        // fx = c0 / (1 + a1 * c0 * x)
-        Console.WriteLine("\nO modelo ajustado eh: y(x) = " + a0 + " / 1 + (" + a1 + ") * (" + a0 + ")t");
-
-        float[] xa = XA(x, n);
-        float[] yAjustado = new float[x.Length];
-        float[] ya = new float[xa.Length];
-
-        // yAjustado == Ya
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
         for (int i = 0; i < n; i++){
             yAjustado[i] = a0 / (1 + a1 * a0 * x[i]);
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
-        // ya
+        // ya, usa a função da questão NAO linearizada * xa
         for (int i = 0; i < xa.Length; i++){
             ya[i] = a0 / (1 + a1 * a0 * xa[i]);
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
-
-        // Calcula o R2
-        R2(yAjustado);
-
-        // Exporta os arrays
-        ExportArrays(x, y, xa, ya);
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
 
-    // Funciona
+    // Funciona 2.0
     public void Ajuste7()
     {
-        somatorioX2 = SomatorioNaPotencia(x, 2); // PADRAO
-        somatorioX = SomatorioNaPotencia(x); // PADRAO
         n = x.Length; // PADRAO
- 
-        // float somatorioXY2 = SomatorioXYNaPotenciaX(y, x, 2);
-        // somatorioY2 = SomatorioNaPotencia(y, 2);
-
-        // Cria a matriz A
-        CriarMatrizA(somatorioX2, somatorioX, n); // PADRAO
-        // Cria matriz A inversa
-        MatrizInversa(); // PADRAO
-        // Moostra as matrizes
-        MostrarMatrizes(); // PADRAO
-
+        float[,] A = CreateA(x); // PADRAO
         float[] B = new float[x.Length]; // PADRAO
 
-        // calcula a matriz B, usando o y ou fx
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = (float)Math.Pow(y[i], 2);
+            B[i] = (float)Math.Pow(y[i], 2); // MUTAVEL
         }
-        Console.WriteLine("\nB"); // PADRAO
-        PrintMatriz1D(B); // PADRAO
-
-        // Calcula a1 e a0
-        A1A0(B, matrizAInversa); // PADRAO
 
         //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
 
-        Console.WriteLine("A1: " + a1); // PADRAO
+        // Se ln de a1 ou a0, usa-se exp
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
         Console.WriteLine("A0: " + a0); // PADRAO
-
         //////////////////A1&A0////////////////////
-
-        // y = raiz quadrada de (a0 + a1 * x)
-        Console.WriteLine("\nO modelo ajustado eh: y(x) = sqrt(" + a0 + " + " + a1 + ")x");
 
         float[] xa = XA(x, n); // PADRAO
         float[] yAjustado = new float[x.Length]; // PADRAO
         float[] ya = new float[xa.Length]; // PADRAO
-
-        // yAjustado == Ya, usa a função da questão * x
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
         for (int i = 0; i < n; i++){
             yAjustado[i] = (float)Math.Sqrt(a0 + a1 * x[i]);
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
-        // ya, usa a função da questão * xa
+        // ya, usa a função da questão NAO linearizada * xa
         for (int i = 0; i < xa.Length; i++){
             ya[i] = (float)Math.Sqrt(a0 + a1 * xa[i]);
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
-
-        // Calcula o R2
-        R2(yAjustado);
-        // Exporta os arrays
-        ExportArrays(x, y, xa, ya);
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
     
-    // Funciona
+    // Funciona 2.0
     public void Ajuste8()
     {
-        somatorioX2 = SomatorioNaPotencia(x, 2); // PADRAO
-        somatorioX = SomatorioNaPotencia(x); // PADRAO
         n = x.Length; // PADRAO
- 
-        // float somatorioXeYDivX = SomatorioXeElevadoAYDivX(x, y);
-        // float somatorioeYDivX = SomatorioeElevadoYDivX(x, y);
-
-        // Cria a matriz A
-        CriarMatrizA(somatorioX2, somatorioX, n); // PADRAO
-        // Cria matriz A inversa
-        MatrizInversa(); // PADRAO
-        // Moostra as matrizes
-        MostrarMatrizes(); // PADRAO
-
-        float[] B = new float[x.Length]; // PADRAO
-
-        // calcula a matriz B, usando o y ou fx
-        for (int i = 0; i < x.Length; i++){
-            B[i] = (float)Math.Pow(Math.E, (y[i] / x[i]));
-            
-        }
-        Console.WriteLine("\nB"); // PADRAO
-        PrintMatriz1D(B); // PADRAO
-
-        //////////////////A1&A0////////////////////
-        // Calcula a1 e a0
-        A1A0(B, matrizAInversa); // PADRAO
-
-        Console.WriteLine("A1: " + a1); // PADRAO
-        Console.WriteLine("A0: " + a0); // PADRAO
-
-        //////////////////A1&A0////////////////////
-
-        // y = x ln(a1 * x + a0)
-        Console.WriteLine("\nO modelo ajustado eh: y(x) = x ln(" + a1 + "x + " + a0 + ")");
-
-        float[] xa = XA(x, n); // PADRAO
-        float[] yAjustado = new float[x.Length]; // PADRAO
-        float[] ya = new float[xa.Length]; // PADRAO
-
-        // yAjustado == Ya, usa a função da questão * x
-        for (int i = 0; i < n; i++){
-            yAjustado[i] =  x[i] * (float)Math.Log(a1 * x[i] + a0);
-            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
-        }
-
-        // ya, usa a função da questão * xa
-        for (int i = 0; i < xa.Length; i++){
-            ya[i] = xa[i] * (float)Math.Log(a1 * xa[i] + a0);
-            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
-        }
-
-        // Calcula o R2
-        R2(yAjustado);
-        // Exporta os arrays
-        ExportArrays(x, y, xa, ya);
-    }
-
-    public void Ajuste9()
-    {
-        Console.WriteLine(x.Length);
-        Console.WriteLine(y.Length);
-
-        float somatorioA = SomatorioXMenosXxYNaPotencia(x, y, 2); 
-        float somatorioB = SomatorioXMenosXxY(x, y);
-        n = x.Length; // PADRAO
- 
-        // float somatorioXeYDivX = SomatorioXeElevadoAYDivX(x, y);
-        // float somatorioeYDivX = SomatorioeElevadoYDivX(x, y);
-
-        // Cria a matriz A
-        CriarMatrizA(somatorioA, somatorioB, n); // PADRAO
-        // Cria matriz A inversa
-        MatrizInversa(); // PADRAO
-        // Moostra as matrizes
-        MostrarMatrizes(); // PADRAO
-
+        float[,] A = CreateA(x); // PADRAO
         float[] B = new float[x.Length]; // PADRAO
 
         // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = (float)Math.Pow(x[i], 2) - x[i] * y[i];
-            
+            B[i] = (float)Math.Pow(Math.E, (y[i] / x[i])); // MUTAVEL
         }
-        Console.WriteLine("\nB"); // PADRAO
-        PrintMatriz1D(B); // PADRAO
 
         //////////////////A1&A0////////////////////
-        // Calcula a1 e a0
-        A1A0(B, matrizAInversa); // PADRAO
+        CreateX(A, B); // PADRAO
 
- 
+        // Se ln de a1 ou a0, usa-se exp
 
-        Console.WriteLine("A1: " + a1); // PADRAO
+        Console.WriteLine("\nA1: " + a1); // PADRAO
         Console.WriteLine("A0: " + a0); // PADRAO
-
         //////////////////A1&A0////////////////////
-
-        // fx = (a + x^2) / (b + x)
-        Console.WriteLine("\nO modelo ajustado eh: y(x) = (" + a1 + " + x²) / (" + a0 + " + x)");
 
         float[] xa = XA(x, n); // PADRAO
         float[] yAjustado = new float[x.Length]; // PADRAO
         float[] ya = new float[xa.Length]; // PADRAO
-
-        // yAjustado == Ya, usa a função da questão * x
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
         for (int i = 0; i < n; i++){
             yAjustado[i] =  x[i] * (float)Math.Log(a1 * x[i] + a0);
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
-        // ya, usa a função da questão * xa
+        // ya, usa a função da questão NAO linearizada * xa
         for (int i = 0; i < xa.Length; i++){
             ya[i] = xa[i] * (float)Math.Log(a1 * xa[i] + a0);
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
-
-        // Calcula o R2
-        R2(yAjustado);
-        // Exporta os arrays
-        ExportArrays(x, y, xa, ya);
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
 
-    public void Ajuste12()
+    public void Ajuste9()
     {
-        float som1 = SomatorioLogYNaPotencia(x, 2); // PADRAO
-        float som2 = SomatorioLogY(x);; // PADRAO
         n = x.Length; // PADRAO
- 
-        // Cria a matriz A
-        CriarMatrizA(som1, som2, n); // PADRAO
-        // Cria matriz A inversa
-        MatrizInversa(); // PADRAO
-        // Moostra as matrizes
-        MostrarMatrizes(); // PADRAO
 
+        float[,] A = CreateA(x); // PADRAO
         float[] B = new float[x.Length]; // PADRAO
 
-        // calcula a matriz B, usando o y ou fx
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = (float)Math.Log(y[i]);
-            
+            B[i] = y[i];
         }
-        Console.WriteLine("\nB"); // PADRAO
-        PrintMatriz1D(B); // PADRAO
 
         //////////////////A1&A0////////////////////
-        // Calcula a1 e a0
-        A1A0(B, matrizAInversa); // PADRAO
+        CreateX(A, B); // PADRAO
 
-        a1 = 0.187865f;
-        a0 = 0.055581f;
+        // Se ln de a1 ou a0, usa-se exp
+        
+        a1 = 1/a1;
+        a0 = a0/a1;
 
-        Console.WriteLine("A1: " + a1); // PADRAO
+        Console.WriteLine("\nA1: " + a1); // PADRAO
         Console.WriteLine("A0: " + a0); // PADRAO
-
         //////////////////A1&A0////////////////////
-
-        // y = x ln(a1 * x + a0)
-        Console.WriteLine("\nO modelo ajustado eh: y(x) = x ln(" + a1 + "x + " + a0 + ")");
 
         float[] xa = XA(x, n); // PADRAO
         float[] yAjustado = new float[x.Length]; // PADRAO
         float[] ya = new float[xa.Length]; // PADRAO
-
-        // yAjustado == Ya, usa a função da questão * x
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
         for (int i = 0; i < n; i++){
-            yAjustado[i] =  x[i] * (float)Math.Log(a1 * x[i] + a0);
+            yAjustado[i] =  (a1 + (float)Math.Pow(x[i], 2)) /  (a0 + x[i]); // MUTAVEL
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
-        // ya, usa a função da questão * xa
+        // ya, usa a função da questão NAO linearizada * xa
         for (int i = 0; i < xa.Length; i++){
-            ya[i] = xa[i] * (float)Math.Log(a1 * xa[i] + a0);
+            ya[i] = (a1 + (float)Math.Pow(xa[i], 2)) /  (a0 + xa[i]); // MUTAVEL
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
+    }
+    
+    // Funciona 2.0
+    public void Ajuste12A()
+    {
+        n = x.Length; // PADRAO
 
-        // Calcula o R2
-        R2(yAjustado);
-        // Exporta os arrays
-        ExportArrays(x, y, xa, ya);
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
+        for (int i = 0; i < x.Length; i++){
+            B[i] = (float)Math.Log(y[i]); // MUTAVEL
+        }
+
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+
+        // Se ln de a1 ou a0, usa-se exp
+        a0 = (float)Math.Exp(a0); // MUTAVEL
+        a1 = (float)Math.Exp(a1); // MUTAVEL
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  a0 * (float)Math.Pow(a1, x[i]); // MUTAVEL
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = a0 * (float)Math.Pow(a1, xa[i]); // MUTAVEL
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
 
+    // Funciona 2.0
     public void Ajuste13()
     {
-        float som1 = SomatorioLogYNaPotencia(x, 2); // PADRAO
-        float som2 = SomatorioLogY(x);; // PADRAO
         n = x.Length; // PADRAO
- 
-        // Cria a matriz A
-        CriarMatrizA(som1, som2, n); // PADRAO
 
-        MatrizInversa(); // PADRAO
-        // Moostra as matrizes
-        MostrarMatrizes(); // PADRAO
-
+        float[,] A = CreateA(x); // PADRAO
         float[] B = new float[x.Length]; // PADRAO
 
-        // calcula a matriz B, usando o y ou fx
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = (float)Math.Log(y[i]);
-            
+            B[i] = (float)Math.Log(y[i]); // MUTAVEL
         }
-        Console.WriteLine("\nB"); // PADRAO
-        PrintMatriz1D(B); // PADRAO
 
         //////////////////A1&A0////////////////////
-        // Calcula a1 e a0
-        A1A0(B, matrizAInversa); // PADRAO
+        CreateX(A, B); // PADRAO
 
-        a0 = (float)Math.Log(a0);
+        // Se ln de a1 ou a0, usa-se exp
+        a1 = (float)Math.Exp(a1);
+        a0 = (float)Math.Exp(a0); // MUTAVEL
 
-        Console.WriteLine("A1: " + a1); // PADRAO
+        Console.WriteLine("\nA1: " + a1); // PADRAO
         Console.WriteLine("A0: " + a0); // PADRAO
-
         //////////////////A1&A0////////////////////
-
-        // y = x ln(a1 * x + a0)
-        Console.WriteLine("\nO modelo ajustado eh: y(x) = x ln(" + a1 + "x + " + a0 + ")");
 
         float[] xa = XA(x, n); // PADRAO
         float[] yAjustado = new float[x.Length]; // PADRAO
         float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  a0 * (float)Math.Pow(a1, x[i]); // MUTAVEL
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
 
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = a0 * (float)Math.Pow(a1, xa[i]); // MUTAVEL
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
+    }
+    
+    // Funciona 2.0
+    public void Ajuste14()
+    {
+        n = x.Length; // PADRAO
+
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
+        for (int i = 0; i < x.Length; i++){
+            B[i] = (float)Math.Log(y[i]); // MUTAVEL
+        }
+
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+
+        // Se ln de a1 ou a0, usa-se exp
+        
+        a0 = (float)Math.Exp(a0); // MUTAVEL
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  a0 * (float)Math.Pow(Math.E, (x[i] * a1));
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = a0 * (float)Math.Pow(Math.E, (xa[i] * a1));
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
+    }
+    
+    // Funciona 2.0
+    public void Ajuste16()
+    {
+        n = x.Length; // PADRAO
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx
+        for (int i = 0; i < x.Length; i++){
+            B[i] = (float)Math.Log(y[i] - 1); // MUTAVEL
+        }
+
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+
+        a0 =  (float)Math.Exp(a0); // MUTAVEL
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
         // yAjustado == Ya, usa a função da questão * x
         for (int i = 0; i < n; i++){
-            yAjustado[i] =  x[i] * (float)Math.Log(a1 * x[i] + a0);
+            yAjustado[i] =  1 + a0 * (float)Math.Pow(Math.E, a1 * x[i]); // MUTAVEL
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
         // ya, usa a função da questão * xa
         for (int i = 0; i < xa.Length; i++){
-            ya[i] = xa[i] * (float)Math.Log(a1 * xa[i] + a0);
+            ya[i] = 1 + a0 * (float)Math.Pow(Math.E, a1 * xa[i]); // MUTAVEL
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
-
-        // Calcula o R2
-        R2(yAjustado);
-        // Exporta os arrays
-        ExportArrays(x, y, xa, ya);
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
-
-    // Funciona
-    public void Ajuste25()
+    
+    public void Ajuste17()
     {
-        float som1 = SomatorioNaPotencia(x, 2); // PADRAO
-        float som2 = SomatorioNaPotencia(x);; // PADRAO
         n = x.Length; // PADRAO
- 
-        // Cria a matriz A
-        CriarMatrizA(som1, som2, n); // PADRAO
-
-        MatrizInversa(); // PADRAO
-        // Moostra as matrizes
-        MostrarMatrizes(); // PADRAO
-
+        float[,] A = CreateA(x); // PADRAO
         float[] B = new float[x.Length]; // PADRAO
 
-        // calcula a matriz B, usando o y ou fx
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = y[i];    
+            B[i] = (float)Math.Pow(Math.E, x[i]) * y[i]; // MUTAVEL
         }
-        Console.WriteLine("\nB"); // PADRAO
-        PrintMatriz1D(B); // PADRAO
 
         //////////////////A1&A0////////////////////
-        // Calcula a1 e a0
-        A1A0(B, matrizAInversa); // PADRAO
+        CreateX(A, B); // PADRAO
+        // a1 = 1.9996f; // MUTAVEL
+        // a0 = 3.81623f; // MUTAVEL
 
-        Console.WriteLine("A1: " + a1); // PADRAO
+        // Se ln de a1 ou a0, usa-se exp
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
         Console.WriteLine("A0: " + a0); // PADRAO
-
         //////////////////A1&A0////////////////////
 
         float[] xa = XA(x, n); // PADRAO
         float[] yAjustado = new float[x.Length]; // PADRAO
         float[] ya = new float[xa.Length]; // PADRAO
-
-        // yAjustado == Ya, usa a função da questão * x
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
         for (int i = 0; i < n; i++){
-            yAjustado[i] =  a1 * x[i] + a0;
+            yAjustado[i] =  a1 * (float)Math.Pow(Math.E, x[i]) + a0 * (float)Math.Pow(Math.E, -Math.Abs(x[i]));
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
-        // ya, usa a função da questão * xa
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = a1 * (float)Math.Pow(Math.E, xa[i]) + a0 * (float)Math.Pow(Math.E, -Math.Abs(xa[i]));
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
+    }
+    
+    public void Ajuste22()
+    {
+        n = x.Length; // PADRAO
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
+        for (int i = 0; i < x.Length; i++){
+            B[i] = (float)Math.Log(1/y[i] - 1); // MUTAVEL
+        }
+
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+
+        // Se ln de a1 ou a0, usa-se exp
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  1 / (1 + (float)Math.Pow(Math.E, 1 * x[i]) );
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão NAO linearizada * xa
         for (int i = 0; i < xa.Length; i++){
             ya[i] = a1 * xa[i] + a0;
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        // Calcula o R2
-        R2(yAjustado);
-        // Exporta os arrays
-        ExportArrays(x, y, xa, ya);
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
     
-    public void Ajuste16()
+    // Funciona 2.0
+    public void Ajuste24A()
     {
-        float som1 = SomatorioNaPotencia(x, 2); // PADRAO
-        float som2 = SomatorioNaPotencia(x);; // PADRAO
         n = x.Length; // PADRAO
- 
-        // Cria a matriz A
-        CriarMatrizA(som1, som2, n); // PADRAO
-
-        MatrizInversa(); // PADRAO
-        // Moostra as matrizes
-        MostrarMatrizes(); // PADRAO
-
+        float[,] A = CreateA(x); // PADRAO
         float[] B = new float[x.Length]; // PADRAO
 
-        // calcula a matriz B, usando o y ou fx
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = y[i];  
+            B[i] = y[i];
         }
-        Console.WriteLine("\nB"); // PADRAO
-        PrintMatriz1D(B); // PADRAO
 
         //////////////////A1&A0////////////////////
-        // Calcula a1 e a0
-        A1A0(B, matrizAInversa); // PADRAO
+        CreateX(A, B); // PADRAO
 
-        a0 = (float)Math.Log(a0);
+        // Se ln de a1 ou a0, usa-se exp
 
-        Console.WriteLine("A1: " + a1); // PADRAO
+        Console.WriteLine("\nA1: " + a1); // PADRAO
         Console.WriteLine("A0: " + a0); // PADRAO
-
         //////////////////A1&A0////////////////////
 
         float[] xa = XA(x, n); // PADRAO
         float[] yAjustado = new float[x.Length]; // PADRAO
         float[] ya = new float[xa.Length]; // PADRAO
         
-        // yAjustado == Ya, usa a função da questão * x
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
         for (int i = 0; i < n; i++){
-            yAjustado[i] =  1 + a0 * (float)Math.Pow(Math.E, a1 * x[i]);
+            yAjustado[i] =  a0 + a1 * x[i];
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
-        // ya, usa a função da questão * xa
+        // ya, usa a função da questão NAO linearizada * xa
         for (int i = 0; i < xa.Length; i++){
-            ya[i] = 1 + a0 * (float)Math.Pow(Math.E, a1 * xa[i]);
+            ya[i] = a0 + a1 * xa[i];
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        // Calcula o R2
-        R2(yAjustado);
-        // Exporta os arrays
-        ExportArrays(x, y, xa, ya);
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
 
-    #region Metodos
-
-    public void MostrarMatrizes()
+    // Funciona 2.0
+    public void Ajuste25()
     {
-        Console.WriteLine("\nMatriz A");
-        PrintMatriz2D(matrizA);
+        n = x.Length; // PADRAO
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
 
-        // Console.WriteLine("\nMatriz B");
-        // PrintMatriz1D(matrizB);
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
+        for (int i = 0; i < x.Length; i++){
+            B[i] = y[i]; // MUTAVEL
+        }
 
-        Console.WriteLine("Matriz A Inversa");
-        PrintMatriz2D(matrizAInversa);
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+
+        // Se ln de a1 ou a0, usa-se exp
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  a1 * x[i] + a0;
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = a1 * xa[i] + a0;
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
     }
+
+    public void Ajuste28()
+    {
+        n = x.Length; // PADRAO
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
+        for (int i = 0; i < x.Length; i++){
+            B[i] = (float)Math.Log(y[i] - x[i]); // MUTAVEL
+            Console.WriteLine("B[" + i + "] = " + B[i]);
+        }
+
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+
+        // Se ln de a1 ou a0, usa-se exp
+        a0 = (float)Math.Exp(a0);
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  a1 * x[i] * (float)(Math.Pow(Math.E, a0*x[i]));
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = a1 * xa[i] * (float)(Math.Pow(Math.E, a0*xa[i]));
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya); // PADRAO
+    }
+    #region Metodos
 
     public void R2(float[] yAjustado)
     {
-        somatorioYYA2 = SomatorioYMenosYAjustadoNaPotencia(y, yAjustado, 2);
-        somatorioY2 = SomatorioNaPotencia(y, 2);
-        somatorioY = SomatorioNaPotencia(y);
+        float somatorioYYA2 = SomatorioYMenosYAjustadoNaPotencia(y, yAjustado, 2);
+        float somatorioY2 = SomatorioNaPotencia(y, 2);
+        float somatorioY = SomatorioNaPotencia(y);
 
         float r2 = R2Linear(somatorioYYA2, somatorioY2, somatorioY, n);
 
         Console.WriteLine("\nR2: " + r2 + "");
     }
 
-    public void MatrizInversa()
+    public float[,] Inversa(float[,] matriz)
     {
-        double a00 = matrizA[0, 0];
-        double a01 = matrizA[0, 1];
-        double a10 = matrizA[1, 0];
-        double a11 = matrizA[1, 1];
+        double a00 = matriz[0, 0];
+        double a01 = matriz[0, 1];
+        double a10 = matriz[1, 0];
+        double a11 = matriz[1, 1];
         
         Matrix matrizAInvertida = new Matrix(a00, a01, a10, a11, 1, 1);
+        float[,] inversa = new float[2, 2];
   
         matrizAInvertida.Invert();
 
-        
-        matrizAInversa = new float[2, 2];
+        inversa[0, 0] = (float)matrizAInvertida.M11;
+        inversa[0, 1] = (float)matrizAInvertida.M12;
+        inversa[1, 0] = (float)matrizAInvertida.M21;
+        inversa[1, 1] = (float)matrizAInvertida.M22;
 
-        matrizAInversa[0, 0] = (float)matrizAInvertida.M11;
-        matrizAInversa[0, 1] = (float)matrizAInvertida.M12;
-        matrizAInversa[1, 0] = (float)matrizAInvertida.M21;
-        matrizAInversa[1, 1] = (float)matrizAInvertida.M22;
+        return inversa;
     }
 
-    public void A1A0(float[] B, float[,] AInversa)
+    public void CreateX(float[,] A, float[] B)
     {
-        float[,] A = new float[x.Length, 2];
-        for (int i = 0; i < x.Length; i++)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                A[i, j] = x[i];
-                if (j == 1){
-                    A[i, j] = 1;
-                }
-            }
-        }
-
-        // fazer A transposta
+        // X = inv(A'*A) * (A'*B)
         float[,] ATransposta = new float[2, x.Length];
         for (int i = 0; i < 2; i++)
         {
-            for (int j = 0; j < x.Length; j++){
+            for (int j = 0; j < x.Length; j++)
+            {
                 ATransposta[i, j] = A[j, i];
             }
         }
+
+        // Console.WriteLine("\nMatriz A Transposta");
+        // PrintMatriz2D(ATransposta);
 
         // multiplicar A transposta por B
         float[,] ATranspostaB = new float[2, 1];
@@ -685,7 +723,31 @@ class AjusteLinear: Ajustes
             }
         }
 
-        // multiplicar AInversa por ATranspostaB
+        // Console.WriteLine("\nMatriz A Transposta x B");
+        // PrintMatriz2D(ATranspostaB);
+
+        // multiplicar ATransposta por A
+        float[,] ATranspostaA = new float[2, 2];
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                ATranspostaA[i, j] = 0;
+                for (int k = 0; k < x.Length; k++)
+                {
+                    ATranspostaA[i, j] += ATransposta[i, k] * A[k, j];
+                }
+            }
+        }
+
+        // Console.WriteLine("\nMatriz A Transposta x A");
+        // PrintMatriz2D(ATranspostaA);
+
+        float[,] InversaATranpostaA = Inversa(ATranspostaA);
+
+        // Console.WriteLine("\nMatriz Inversa de A Transposta x A");
+        // PrintMatriz2D(InversaATranpostaA);
+
         float[,] X = new float[2, 1];
         for (int i = 0; i < 2; i++)
         {
@@ -694,28 +756,14 @@ class AjusteLinear: Ajustes
                 X[i, j] = 0;
                 for (int k = 0; k < 2; k++)
                 {
-                    X[i, j] += AInversa[i, k] * ATranspostaB[k, j];
+                    X[i, j] += InversaATranpostaA[i, k] * ATranspostaB[k, j];
                 }
             }
         }
+        
         a1 = X[0, 0];
         a0 = X[1, 0];
     }
-
-    // public void Determinante_Resultado()
-    // {
-    //     determinanteA = Determinante(somatorioX, somatorioX2, n);
-    //     resultado = Resultado();
-
-    //     Console.WriteLine("\nResultado");
-    //     PrintMatriz1D(resultado);
-
-    //     a1 = resultado[0] * determinanteA;
-    //     a0 = resultado[1] * determinanteA;
-
-    //     Console.WriteLine("A1 antes: " + a1);
-    //     Console.WriteLine("A0 antes: " + a0);
-    // }
 
     private bool ExportArrays(float[] x, float[] y, float[] xa, float[] ya)
     {
@@ -748,60 +796,13 @@ class AjusteLinear: Ajustes
         return true;
     }
 
-    public void CriarMatrizA(float a, float b, float n)
-    {
-        matrizA = new float[,]{
-            {a, b},
-            {b, n}
-        };
-    }
-
-    // public void CriarMatrizB(float a, float b)
-    // {
-    //     matrizB = new float[]{
-    //         a,
-    //         b
-    //     };
-    // }
-
-    private void CriarMatrizes()
-    {
-        matrizA = new float[,]{
-            {somatorioX2, somatorioX},
-            {somatorioX, n}
-        };
-
-        matrizAInversa = new float[,]{
-            {n, -somatorioX},
-            {-somatorioX, somatorioX2}
-        };
-
-        // matrizB = new float[]{
-        //     somatorioYX,
-        //     somatorioY
-        // };
-    }
-
-    // private float[] Resultado()
-    // {
-    //     float[] resultado = new float[2];
-    //     for (int i = 0; i < 2; i++)
-    //     {
-    //         for (int j = 0; j < 2; j++)
-    //         {
-    //             resultado[i] += matrizAInversa[i, j] * matrizB[j];
-    //         }
-    //     }
-    //     return resultado;
-    // }
-
     #endregion
 
     static void Main(string[] args)
     {  
         AjusteLinear ajusteLinear = new AjusteLinear();
         AjusteQuadratico ajusteQuadratico = new AjusteQuadratico();
-        ajusteLinear.Ajuste16(); 
+        ajusteLinear.Ajuste28(); 
         // ajusteQuadratico.Ajuste();
     }
 

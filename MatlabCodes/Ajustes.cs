@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class Ajustes
 {
-    public string name;
-
     public float SomatorioNaPotencia(float[] array, int potencia = 1)
     {
         float somatorio = 0;
@@ -27,15 +25,6 @@ public class Ajustes
         return somatorio;
     }
 
-    public float Determinante(float sX, float sX2, float n)
-    {
-        float determinante = 0;
-        determinante = ((sX2 * n) - (sX * sX));
-        // Console.WriteLine("1/"+determinante);
-        determinante = 1 / determinante;
-        return determinante;
-    }
-
     public float SomatorioXYNaPotenciaX(float[] x, float[] y, int potencia = 1)
     {
         float somatorio = 0;
@@ -44,37 +33,6 @@ public class Ajustes
             somatorio += (float)Math.Pow(x[i], potencia) * y[i];
         }
         return somatorio;
-    }
-
-    public float SomatorioXeElevadoAYDivX(float[] x, float[] y)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < x.Length; i++)
-        {
-            somatorio += x[i] * ((float)Math.Pow(1.5E-8f, y[i] / x[i]));
-        }
-        return somatorio;
-    }
-
-    public float SomatorioeElevadoYDivX(float[] x, float[] y)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < x.Length; i++)
-        {
-            somatorio += (float)Math.Pow(1.5E-8f, y[i] / x[i]);
-        }
-        return somatorio;
-    }
-
-    public float[] YAjustadoLinear(float[] x, float a0)
-    {
-        float[] y = new float[x.Length];
-        for (int i = 0; i < x.Length; i++)
-        {
-            y[i] =  1 * x[i] + a0;
-            // Console.WriteLine("Y: " + y[i]);
-        }
-        return y;
     }
 
     public float[] YAjustadoQuadratico(float[] x, float a2, float a1, float a0)
@@ -97,46 +55,6 @@ public class Ajustes
         return somatorio;   
     }
 
-    public float SomatorioXMenosXxYNaPotencia(float[] x, float[] y, float potencia = 1)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < x.Length; i++)
-        {
-            somatorio += (float)Math.Pow((x[i] - x[i] * y[i]), potencia);
-        }
-        return somatorio;
-    }
-
-    public float SomatorioXMenosXxY(float[] x, float[] y)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < x.Length; i++)
-        {
-            somatorio += (x[i] - x[i] * y[i]);
-        }
-        return somatorio;
-    }
-
-    public float SomatorioY1DividindoX(float[] y, float[] x)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < y.Length; i++)
-        {
-            somatorio += y[i] * (1 / x[i]);
-        }
-        return somatorio;
-    }
-
-    public float Somatorio1DividindoX(float[] x)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < x.Length; i++)
-        {
-            somatorio += (1 / x[i]);
-        }
-        return somatorio;
-    }
-
     public float R2Quadratico(float somatorioYYA2, float somatorioY2, float somatorioY, float n)
     {
         float passo1 = n * somatorioYYA2;
@@ -149,11 +67,6 @@ public class Ajustes
         float s1 = somatorioYYA2;
         float s2 = somatorioY2;
         float s3 = (float)Math.Pow(somatorioY, 2);
-
-        // print s1, s2, s3
-        // Console.WriteLine("S1: " + s1);
-        // Console.WriteLine("S2: " + s2);
-        // Console.WriteLine("S3: " + somatorioY);
 
         float r2 = 1 - (n * s1 / (n  * s2 - s3));
 
@@ -170,6 +83,7 @@ public class Ajustes
         {
             xa.Add(add / 100);
             add = add + 1;     
+            // Console.WriteLine("XA: " + add);
         }
         foreach (float item in xa)
         {
@@ -182,6 +96,7 @@ public class Ajustes
         list.Add(count);
 
         while (count < maxX){
+            // Console.WriteLine("Count: " + count);
             count += sum;
             count = (float)Math.Round(count, 4, MidpointRounding.AwayFromZero);
             list.Add(count);
@@ -193,35 +108,13 @@ public class Ajustes
         return list.ToArray();
     }
 
-
-    public float SomatorioXLogYNaPotencia(float[] x, float[] y, int potencia = 1)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < x.Length; i++)
-        {
-            somatorio += (float)(x[i] * (float)Math.Log(y[i]));
+    public float[,] CreateA(float[] x){
+        float[,] a = new float[x.Length, 2];
+        for (int i = 0; i < x.Length; i++){
+            a[i, 0] = x[i];
+            a[i, 1] = 1;
         }
-        return somatorio;
-    }
-
-    public float SomatorioLogY(float[] y)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < y.Length; i++)
-        {
-            somatorio += (float)Math.Log(y[i]);
-        }
-        return somatorio;
-    }
-
-    public float SomatorioLogYNaPotencia(float[] xy, float potencia)
-    {
-        float somatorio = 0;
-        for (int i = 0; i < xy.Length; i++)
-        {
-            somatorio += (float)Math.Pow(Math.Log(xy[i]), potencia);
-        }
-        return somatorio;
+        return a;
     }
 
     public void PrintMatriz2D(float[,] matriz)
