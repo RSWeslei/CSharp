@@ -11,8 +11,8 @@ class AjusteLinear: Ajustes
     // float[] y = {1f, 2.5f, 3.5f, 4f};
 
     // 5 e 6
-    // float[] x = {1, 3, 5, 10, 15, 25};
-    // float[] y = {0.04049f, 0.02604f, 0.01912f, 0.01142f, 0.00741f, 0.00521f}; 
+    float[] x = {1, 3, 5, 10, 15, 25};
+    float[] y = {0.04049f, 0.02604f, 0.01912f, 0.01142f, 0.00741f, 0.00521f}; 
 
     // 7
     // float[] x = {1.5f, 2.0f, 2.5f, 3.0f};
@@ -46,6 +46,14 @@ class AjusteLinear: Ajustes
     // float[] x = {0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f};
     // float[] y = {5.02f, 5.21f, 6.49f, 9.54f, 16.02f, 24.53f};
 
+    // 19
+    // float[] x = {1.0f, 10f, 20f, 30f, 40f, 50f};
+    // float[] y = {0.03f, 0.25f, 0.4f, 0.54f, 0.62f, 0.67f};
+
+    // 21
+    // float[] x = {0f, 5f, 10f, 25f, 30f, 35f};
+    // float[] y = {1.00762f, 1.00392f, 1.00153f, 0.99852f, 0.99826f, 0.99818f};
+
     // 22
     // float[] x = {0.1f, 0.3f, 0.5f, 0.5f, 0.7f, 0.8f, 0.8f, 1.10f, 1.30f, 1.80f};
     // float[] y = {0.833f, 0.625f, 0.500f, 0.510f, 0.416f, 0.384f, 0.395f, 0.312f, 0.277f, 0.217f};
@@ -59,8 +67,12 @@ class AjusteLinear: Ajustes
     // float[] y = {11, 10, 11, 12, 13, 13, 12, 14, 16, 17, 13, 14, 22, 14, 21, 21, 24, 17, 23, 34};
 
     // 28
-    float[] x = {0.1f, 0.2f, 0.4f, 0.6f, 0.9f, 1.3f, 1.5f, 1.7f, 1.8f};
-    float[] y = {0.75f, 1.25f, 1.45f, 1.25f, 0.85f, 0.55f, 0.35f, 0.28f, 0.18f};
+    // float[] x = {0.1f, 0.2f, 0.4f, 0.6f, 0.9f, 1.3f, 1.5f, 1.7f, 1.8f};
+    // float[] y = {0.75f, 1.25f, 1.45f, 1.25f, 0.85f, 0.55f, 0.35f, 0.28f, 0.18f};
+
+    // 32
+    // float[] x = {-2f, -1.5556f, -1.1111f, -0.66667f, -0.22222f, 0.22222f, 0.66667f, 1.1111f, 1.5556f, 2f};
+    // float[] y = {6758.3f, 6445.2f, 5386.0f, 4980.7f, 4728.1f, 4601.5f, 4819.2f, 5052.7f, 5430.2f, 6208.5f};
 
     float n;
     float a1, a0;
@@ -108,8 +120,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
 
     // Funciona 2.0
@@ -153,8 +165,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
 
     // Funciona 2.0
@@ -194,8 +206,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
     
     // Funciona 2.0
@@ -235,8 +247,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
 
     public void Ajuste9()
@@ -256,8 +268,8 @@ class AjusteLinear: Ajustes
 
         // Se ln de a1 ou a0, usa-se exp
         
-        a1 = 1/a1;
-        a0 = a0/a1;
+        a1 = 1/a0;
+        // a0 = a0/a1;
 
         Console.WriteLine("\nA1: " + a1); // PADRAO
         Console.WriteLine("A0: " + a0); // PADRAO
@@ -279,8 +291,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
     
     // Funciona 2.0
@@ -323,8 +335,50 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
+    }
+
+    // Funciona 2.0
+    public void Ajuste12B()
+    {
+        n = x.Length; // PADRAO
+
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
+        for (int i = 0; i < x.Length; i++){
+            B[i] = x[i] / y[i]; // MUTAVEL
+        }
+
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+
+        // Se ln de a1 ou a0, usa-se exp
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  x[i] / (a0 + a1 * x[i]); // MUTAVEL
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = xa[i] / (a0 + a1 * xa[i]); // MUTAVEL
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
 
     // Funciona 2.0
@@ -367,8 +421,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
     
     // Funciona 2.0
@@ -411,8 +465,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
     
     // Funciona 2.0
@@ -452,8 +506,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
     
     public void Ajuste17()
@@ -464,7 +518,8 @@ class AjusteLinear: Ajustes
 
         // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = (float)Math.Pow(Math.E, x[i]) * y[i]; // MUTAVEL
+            B[i] = ((float)Math.Pow(Math.E, x[i])) * y[i]; // MUTAVEL
+            Console.WriteLine("B[" + i + "] = " + B[i]);
         }
 
         //////////////////A1&A0////////////////////
@@ -494,8 +549,51 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
+    }
+
+    public void Ajuste21()
+    {
+        n = x.Length; // PADRAO
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
+        for (int i = 0; i < x.Length; i++){
+            B[i] = (float)Math.Log(y[i]); // MUTAVEL
+            Console.WriteLine("B[" + i + "] = " + B[i]);
+        }
+
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+        a1 = (float)Math.Exp(a1); // MUTAVEL
+        a0 = (float)-Math.Abs(a0); // MUTAVEL
+
+        // Se ln de a1 ou a0, usa-se exp
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  a1 * (float)Math.Pow(Math.E, -Math.Abs(a0) * x[i]);
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = a1 * (float)Math.Pow(Math.E, -Math.Abs(a0) * xa[i]);
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
     
     public void Ajuste22()
@@ -534,8 +632,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
     
     // Funciona 2.0
@@ -575,8 +673,8 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
 
     // Funciona 2.0
@@ -616,10 +714,11 @@ class AjusteLinear: Ajustes
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
 
+    // Funciona 2.0
     public void Ajuste28()
     {
         n = x.Length; // PADRAO
@@ -628,7 +727,7 @@ class AjusteLinear: Ajustes
 
         // calcula a matriz B, usando o y ou fx da funçao linearizada
         for (int i = 0; i < x.Length; i++){
-            B[i] = (float)Math.Log(y[i] - x[i]); // MUTAVEL
+            B[i] = (float)Math.Log(y[i] / x[i]); // MUTAVEL
             Console.WriteLine("B[" + i + "] = " + B[i]);
         }
 
@@ -648,22 +747,65 @@ class AjusteLinear: Ajustes
         
         // yAjustado == Ya, usa a função da questão NAO linearizada * x
         for (int i = 0; i < n; i++){
-            yAjustado[i] =  a1 * x[i] * (float)(Math.Pow(Math.E, a0*x[i]));
+            yAjustado[i] =  a0 * x[i] * (float)(Math.Pow(Math.E, a1*x[i]));
             // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
         }
 
         // ya, usa a função da questão NAO linearizada * xa
         for (int i = 0; i < xa.Length; i++){
-            ya[i] = a1 * xa[i] * (float)(Math.Pow(Math.E, a0*xa[i]));
+            ya[i] = a0 * xa[i] * (float)(Math.Pow(Math.E, a1*xa[i]));
             // Console.WriteLine("ya[" + i + "] = " + ya[i]);
         }
         
-        R2(yAjustado); // PADRAO
-        ExportArrays(x, y, xa, ya); // PADRAO
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
     }
+
+    public void Ajuste32()
+    {
+        n = x.Length; // PADRAO
+        float[,] A = CreateA(x); // PADRAO
+        float[] B = new float[x.Length]; // PADRAO
+
+        // calcula a matriz B, usando o y ou fx da funçao linearizada
+        for (int i = 0; i < x.Length; i++){
+            B[i] = 1 / y[i]; // MUTAVEL
+            Console.WriteLine("B[" + i + "] = " + B[i]);
+        }
+
+        //////////////////A1&A0////////////////////
+        CreateX(A, B); // PADRAO
+
+        // Se ln de a1 ou a0, usa-se exp
+        a0 = (float)Math.Exp(a0);
+
+        Console.WriteLine("\nA1: " + a1); // PADRAO
+        Console.WriteLine("A0: " + a0); // PADRAO
+        //////////////////A1&A0////////////////////
+
+        float[] xa = XA(x, n); // PADRAO
+        float[] yAjustado = new float[x.Length]; // PADRAO
+        float[] ya = new float[xa.Length]; // PADRAO
+        
+        // yAjustado == Ya, usa a função da questão NAO linearizada * x
+        for (int i = 0; i < n; i++){
+            yAjustado[i] =  a0 * x[i] * (float)(Math.Pow(Math.E, a1*x[i]));
+            // Console.WriteLine("yAjustado[" + i + "] = " + yAjustado[i]);
+        }
+
+        // ya, usa a função da questão NAO linearizada * xa
+        for (int i = 0; i < xa.Length; i++){
+            ya[i] = a0 * xa[i] * (float)(Math.Pow(Math.E, a1*xa[i]));
+            // Console.WriteLine("ya[" + i + "] = " + ya[i]);
+        }
+        
+        float r2 = R2(yAjustado); // PADRAO
+        ExportArrays(x, y, xa, ya, r2); // PADRAO
+    }
+
     #region Metodos
 
-    public void R2(float[] yAjustado)
+    public float R2(float[] yAjustado)
     {
         float somatorioYYA2 = SomatorioYMenosYAjustadoNaPotencia(y, yAjustado, 2);
         float somatorioY2 = SomatorioNaPotencia(y, 2);
@@ -672,6 +814,8 @@ class AjusteLinear: Ajustes
         float r2 = R2Linear(somatorioYYA2, somatorioY2, somatorioY, n);
 
         Console.WriteLine("\nR2: " + r2 + "");
+
+        return r2;
     }
 
     public float[,] Inversa(float[,] matriz)
@@ -765,7 +909,7 @@ class AjusteLinear: Ajustes
         a0 = X[1, 0];
     }
 
-    private bool ExportArrays(float[] x, float[] y, float[] xa, float[] ya)
+    private bool ExportArrays(float[] x, float[] y, float[] xa, float[] ya, float r2)
     {
         string path = "C:\\Users\\wesle\\Documents\\Programming\\Python\\AjusteDeCurva";
         StreamWriter writer = new StreamWriter(path + "\\Ajuste.txt");
@@ -791,7 +935,9 @@ class AjusteLinear: Ajustes
         for (int i = 0; i < ya.Length; i++){
             writer.Write(ya[i].ToString().Replace(',', '.') + " ");
         }
-
+        writer.WriteLine();
+        writer.Write(r2.ToString());
+        
         writer.Close();
         return true;
     }
@@ -802,7 +948,7 @@ class AjusteLinear: Ajustes
     {  
         AjusteLinear ajusteLinear = new AjusteLinear();
         AjusteQuadratico ajusteQuadratico = new AjusteQuadratico();
-        ajusteLinear.Ajuste28(); 
+        ajusteLinear.Ajuste6(); 
         // ajusteQuadratico.Ajuste();
     }
 
