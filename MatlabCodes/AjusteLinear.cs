@@ -11,8 +11,8 @@ class AjusteLinear: Ajustes
     // float[] y = {1f, 2.5f, 3.5f, 4f};
 
     // 5 e 6
-    float[] x = {1, 3, 5, 10, 15, 25};
-    float[] y = {0.04049f, 0.02604f, 0.01912f, 0.01142f, 0.00741f, 0.00521f}; 
+    // float[] x = {1, 3, 5, 10, 15, 25};
+    // float[] y = {0.04049f, 0.02604f, 0.01912f, 0.01142f, 0.00741f, 0.00521f}; 
 
     // 7
     // float[] x = {1.5f, 2.0f, 2.5f, 3.0f};
@@ -39,8 +39,8 @@ class AjusteLinear: Ajustes
     // float[] y = {1f, 0.79f, 0.63f, 0.5f, 0.4f, 0.32f, 0.25f};
 
     // 16
-    // float[] x = {0.0f, 0.5f, 1f, 2.5f, 3f};
-    // float[] y = {2.0f, 2.6f, 3.7f, 13.2f, 21f};
+    float[] x = {0.0f, 0.5f, 1f, 2.5f, 3f};
+    float[] y = {2.0f, 2.6f, 3.7f, 13.2f, 21f};
 
     // 17
     // float[] x = {0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f};
@@ -948,7 +948,7 @@ class AjusteLinear: Ajustes
     {  
         AjusteLinear ajusteLinear = new AjusteLinear();
         AjusteQuadratico ajusteQuadratico = new AjusteQuadratico();
-        ajusteLinear.Ajuste6(); 
+        ajusteLinear.Ajuste9(); 
         // ajusteQuadratico.Ajuste();
     }
 
